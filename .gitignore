@@ -1,0 +1,24 @@
+# Secrets & credentials
+.env
+.env.*
+!.env.example
+credentials.json
+token.json
+
+# Temporary files
+.tmp/
+
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

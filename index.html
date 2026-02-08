@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Currency Calculator</title>
+  <title>My Apps</title>
   <style>
     * {
       margin: 0;
@@ -23,323 +23,71 @@
     }
 
     .container {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
-      padding: 2rem;
       width: 100%;
-      max-width: 480px;
+      max-width: 640px;
     }
 
     h1 {
       text-align: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-    }
-
-    .converter-row {
-      display: flex;
-      gap: 0.75rem;
-    }
-
-    .input-group {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #64748b;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    input[type="number"],
-    select {
-      width: 100%;
-      padding: 0.7rem 0.85rem;
-      border: 1px solid #cbd5e1;
-      border-radius: 8px;
-      background: #f8fafc;
-      font-size: 1rem;
-      color: #1e293b;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    input[type="number"]:focus,
-    select:focus {
-      border-color: #2563eb;
-    }
-
-    input[type="number"] {
-      -moz-appearance: textfield;
-    }
-
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
-    .swap-row {
-      display: flex;
-      justify-content: center;
-      margin: 0.75rem 0;
-    }
-
-    .swap-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: none;
-      background: #2563eb;
-      color: #fff;
-      font-size: 1.25rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .swap-btn:hover {
-      background: #1d4ed8;
-      transform: scale(1.1);
-    }
-
-    .swap-btn:active {
-      transform: scale(0.95);
-    }
-
-    .result {
-      margin-top: 1.25rem;
-      background: #eff6ff;
-      border-radius: 12px;
-      padding: 1.25rem;
-      text-align: center;
-      min-height: 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.35rem;
-    }
-
-    .result-amount {
       font-size: 1.75rem;
       font-weight: 700;
-      color: #1e293b;
+      margin-bottom: 2rem;
     }
 
-    .result-rate {
-      font-size: 0.85rem;
+    .apps-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .app-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem 2rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+
+    .app-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .app-card:active {
+      transform: translateY(0);
+    }
+
+    .app-card h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .app-card p {
+      font-size: 0.9rem;
       color: #64748b;
-    }
-
-    .last-updated {
-      text-align: center;
-      font-size: 0.75rem;
-      color: #94a3b8;
-      margin-top: 0.75rem;
-    }
-
-    .error {
-      margin-top: 1rem;
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      border-radius: 8px;
-      padding: 0.75rem 1rem;
-      color: #dc2626;
-      font-size: 0.875rem;
-      text-align: center;
-    }
-
-    .hidden {
-      display: none;
+      line-height: 1.4;
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 1.25rem;
-      }
-
-      .converter-row {
-        flex-direction: column;
-      }
-
-      .result-amount {
-        font-size: 1.5rem;
+      h1 {
+        font-size: 1.4rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Currency Calculator</h1>
-
-    <div class="converter-row">
-      <div class="input-group">
-        <label for="amount">Amount</label>
-        <input type="number" id="amount" value="1" min="0" step="any">
-      </div>
-      <div class="input-group">
-        <label for="fromCurrency">From</label>
-        <select id="fromCurrency"></select>
-      </div>
+    <h1>My Apps</h1>
+    <div class="apps-grid">
+      <a href="apps/currency-calculator/" class="app-card">
+        <h2>Currency Calculator</h2>
+        <p>Convert between 12 major currencies with live exchange rates</p>
+      </a>
+      <!-- Add new apps here -->
     </div>
-
-    <div class="swap-row">
-      <button id="swapBtn" class="swap-btn" aria-label="Swap currencies">⇅</button>
-    </div>
-
-    <div class="converter-row">
-      <div class="input-group">
-        <label for="toCurrency">To</label>
-        <select id="toCurrency"></select>
-      </div>
-    </div>
-
-    <div id="result" class="result">
-      <span class="result-amount" id="resultAmount">—</span>
-      <span class="result-rate" id="resultRate"></span>
-    </div>
-
-    <div id="lastUpdated" class="last-updated"></div>
-    <div id="error" class="error hidden"></div>
   </div>
-
-  <script>
-    const CURRENCIES = [
-      { code: 'USD', name: 'US Dollar' },
-      { code: 'EUR', name: 'Euro' },
-      { code: 'GBP', name: 'British Pound' },
-      { code: 'JPY', name: 'Japanese Yen' },
-      { code: 'CAD', name: 'Canadian Dollar' },
-      { code: 'AUD', name: 'Australian Dollar' },
-      { code: 'CHF', name: 'Swiss Franc' },
-      { code: 'CNY', name: 'Chinese Yuan' },
-      { code: 'INR', name: 'Indian Rupee' },
-      { code: 'MXN', name: 'Mexican Peso' },
-      { code: 'BRL', name: 'Brazilian Real' },
-      { code: 'KRW', name: 'South Korean Won' }
-    ];
-
-    const ZERO_DECIMAL = new Set(['JPY', 'KRW']);
-    const CACHE_TTL = 10 * 60 * 1000; // 10 minutes
-
-    const ratesCache = {};
-
-    const $amount = document.getElementById('amount');
-    const $from = document.getElementById('fromCurrency');
-    const $to = document.getElementById('toCurrency');
-    const $resultAmount = document.getElementById('resultAmount');
-    const $resultRate = document.getElementById('resultRate');
-    const $lastUpdated = document.getElementById('lastUpdated');
-    const $error = document.getElementById('error');
-    const $swapBtn = document.getElementById('swapBtn');
-
-    function populateSelects() {
-      for (const { code, name } of CURRENCIES) {
-        const opt1 = new Option(`${code} — ${name}`, code);
-        const opt2 = new Option(`${code} — ${name}`, code);
-        $from.add(opt1);
-        $to.add(opt2);
-      }
-      $from.value = 'USD';
-      $to.value = 'EUR';
-    }
-
-    function showError(msg) {
-      $error.textContent = msg;
-      $error.classList.remove('hidden');
-    }
-
-    function hideError() {
-      $error.classList.add('hidden');
-    }
-
-    function formatCurrency(amount, code) {
-      const decimals = ZERO_DECIMAL.has(code) ? 0 : 2;
-      return amount.toLocaleString(undefined, {
-        minimumFractionDigits: decimals,
-        maximumFractionDigits: decimals
-      });
-    }
-
-    async function fetchRates(base) {
-      const cached = ratesCache[base];
-      if (cached && (Date.now() - cached.timestamp < CACHE_TTL)) {
-        return cached.rates;
-      }
-
-      try {
-        const res = await fetch(`https://open.er-api.com/v6/latest/${base}`);
-        if (!res.ok) {
-          showError('Exchange rate service returned an error. Try again later.');
-          return null;
-        }
-        const data = await res.json();
-        if (!data.rates || typeof data.rates !== 'object') {
-          showError('Received unexpected data from the exchange rate service.');
-          return null;
-        }
-        ratesCache[base] = { rates: data.rates, timestamp: Date.now() };
-        $lastUpdated.textContent = 'Rates updated: ' + new Date().toLocaleTimeString();
-        hideError();
-        return data.rates;
-      } catch (e) {
-        showError('Unable to fetch exchange rates. Check your internet connection.');
-        return null;
-      }
-    }
-
-    async function convert() {
-      const amount = parseFloat($amount.value);
-      const from = $from.value;
-      const to = $to.value;
-
-      if (isNaN(amount) || amount < 0 || $amount.value.trim() === '') {
-        $resultAmount.textContent = '—';
-        $resultRate.textContent = '';
-        return;
-      }
-
-      const rates = await fetchRates(from);
-      if (!rates) return;
-
-      const rate = rates[to];
-      if (rate == null) {
-        showError(`No rate available for ${to}.`);
-        return;
-      }
-
-      const converted = amount * rate;
-      $resultAmount.textContent = `${formatCurrency(converted, to)} ${to}`;
-      $resultRate.textContent = `1 ${from} = ${formatCurrency(rate, to)} ${to}`;
-    }
-
-    function swapCurrencies() {
-      const tmp = $from.value;
-      $from.value = $to.value;
-      $to.value = tmp;
-      convert();
-    }
-
-    function init() {
-      populateSelects();
-      $amount.addEventListener('input', convert);
-      $from.addEventListener('change', convert);
-      $to.addEventListener('change', convert);
-      $swapBtn.addEventListener('click', swapCurrencies);
-      convert();
-    }
-
-    document.addEventListener('DOMContentLoaded', init);
-  </script>
 </body>
 </html>
